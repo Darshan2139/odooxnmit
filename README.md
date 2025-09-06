@@ -240,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email skillmart.ce@gmail.com or create an issue in the repository.
+For support, email synergysphere.ce@gmail.com or create an issue in the repository.
 
 ## 🎯 Roadmap
 

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import ProjectCard from "../components/Card";
 import Styled, { useTheme } from "styled-components";
 import ProjectStatCard from "../components/ProjectStatCard";
-import { Add } from "@mui/icons-material";
+import FloatingActionButton from "../components/FloatingActionButton";
+import Breadcrumb from "../components/Breadcrumb";
 import CircularProgress, {
   CircularProgressProps,
 } from '@mui/material/CircularProgress';
@@ -19,15 +20,17 @@ import { getProjects, userTasks } from "../api";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const Container = Styled.div`
-@media screen and (max-width: 480px) {
-  padding: 10px 10px;
-}
+  padding: 16px;
+  @media screen and (max-width: 480px) {
+    padding: 8px;
+  }
 `;
 
 const Section = Styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
+  gap: 16px;
 `;
 
 const Left = Styled.div`
@@ -35,8 +38,8 @@ const Left = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 20px;
-  flex: 1.4;
+  gap: 16px;
+  flex: 1.6;
 `;
 
 const Right = Styled.div`
@@ -45,19 +48,19 @@ const Right = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 20px;
+  gap: 16px;
 `;
 
 const TopBar = Styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  gap: 16px;
-  margin: 20px 0px;
+  gap: 8px;
+  margin: 16px 0px;
 `;
 
 const CreateButton = Styled.div`
-  padding: 20px 30px;
+  padding: 12px 16px;
   text-align: left;
   font-size: 16px;
   font-weight: 800;
@@ -136,11 +139,13 @@ const RecentProjects = Styled.div`
 
 const SectionTitle = Styled.div` 
   width: 100%;
-  padding: 0px 12px;
-  font-size: 22px;
+  padding: 0px 8px;
+  font-size: 20px;
   font-weight: 600;
-  margin: 10px 0px 16px 0px;
+  margin: 8px 0px 12px 0px;
   color: ${({ theme }) => theme.text};
+  border-bottom: 1px solid ${({ theme }) => theme.soft2};
+  padding-bottom: 8px;
 `;
 
 const RecentProjectsWrapper = Styled.div`
@@ -212,10 +217,10 @@ const Span = Styled.span`
 `;
 
 const CardWrapper = Styled.div`
-padding: 12px 0px;
+padding: 8px 0px;
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-grid-gap: 8px;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+grid-gap: 16px;
 `;
 
 const Tasks = Styled.div`
@@ -340,6 +345,7 @@ const Dashboard = ({ setNewProject, setNewTeam, newProject }) => {
 
   return (
     <Container>
+      <Breadcrumb items={[]} />
       {loading ? (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: '12px 0px', height: '300px' }}>
           <CircularProgress />
@@ -422,24 +428,14 @@ const Dashboard = ({ setNewProject, setNewTeam, newProject }) => {
 
           </Left>
           <Right>
-
-            <TopBar>
-              <CreateButton onClick={() => setNewProject(true)}>
-                <Icon>
-                  <Add style={{ color: 'inherit' }} />
-                </Icon>
-                Create New Project
-              </CreateButton>
-              <CreateButton btn="team" onClick={() => setNewTeam(true)}>
-                <Icon>
-                  <Add style={{ color: '#FFC107' }} />
-                </Icon>
-                Create New Team
-              </CreateButton>
-            </TopBar>
+            {/* Create buttons moved to FAB */}
           </Right>
         </Section>
       )}
+      <FloatingActionButton 
+        onCreateProject={() => setNewProject(true)}
+        onCreateTeam={() => setNewTeam(true)}
+      />
     </Container >
   );
 };

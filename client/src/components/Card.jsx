@@ -12,19 +12,20 @@ import Avatar from "@mui/material/Avatar";
 import {format} from 'timeago.js';
 
 const Container = styled.div`
-  padding: 14px 14px;
+  padding: 12px;
   text-align: left;
-  margin: 12px 0px 8px 0px;
+  margin: 8px 0px;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.card};
   color: ${({ theme }) => theme.text};
   cursor: pointer;
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
   &:hover {
-    transition: all 0.6s ease-in-out;
-    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   }
 `;
 
