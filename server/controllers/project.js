@@ -202,8 +202,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD
   },
-  port: 465,
-  host: 'smtp.gmail.com'
+  port: process.env.MAIL_PORT || 587,
+  host: process.env.MAIL_HOST || 'smtp.gmail.com'
 });
 
 export const inviteProjectMember = async (req, res, next) => {
@@ -220,7 +220,7 @@ export const inviteProjectMember = async (req, res, next) => {
   const link = `${process.env.URL}/projects/invite/${req.app.locals.CODE}?projectid=${req.params.id}&userid=${req.body.id}&access=${req.body.access}&role=${req.body.role}`;
   const mailBody = `
   <div style="font-family: Poppins, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+    <img src="https://res.cloudinary.com/ddljrgyvx/image/upload/v1757150291/mail_iwp6no.svg" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
     <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Invitation to join a Synergy Sphere Project</h1>
     <div style="background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0,0,0,0.05);">
         <div style="background-color: #854CE6; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 0;">

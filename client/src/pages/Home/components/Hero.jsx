@@ -4,19 +4,19 @@ import DemoImage from "../../../Images/AddProject.gif"
 import HeaderImage from "../../../Images/Header.png"
 
 const Container = styled.div`
-  height: 80vh;
-  margin: 6px 14px;
+  height: 75vh;
+  margin: 8px 16px;
   max-width: 1320px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 80px;
-  padding: 20px;
+  gap: 64px;
+  padding: 16px;
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 20px;
-    padding: 20px 12px 30px 12px!important;
-    height: 70vh;
+    gap: 16px;
+    padding: 16px 8px 24px 8px!important;
+    height: 65vh;
   }
 `
 const Left = styled.div`
@@ -27,12 +27,13 @@ const Left = styled.div`
 `
 
 const TitleTag = styled.div`
-  font-size: 58px;
+  font-size: 52px;
   @media (max-width: 768px) {
-    font-size: 40px;
+    font-size: 36px;
   }
-  font-weight: 800;
+  font-weight: 700;
   color: ${({ theme }) => theme.text};
+  line-height: 1.2;
 `
 const DescriptiveTag = styled.p`
   font-size: 17px;

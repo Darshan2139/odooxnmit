@@ -16,8 +16,8 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD
     },
-    port: 465,
-    host: 'smtp.gmail.com'
+    port: process.env.MAIL_PORT || 587,
+    host: process.env.MAIL_HOST || 'smtp.gmail.com'
 });
 
 export const signup = async (req, res, next) => {
@@ -109,7 +109,7 @@ export const logout = (req, res) => {
 /*
 Welcome template
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+        <img src="https://res.cloudinary.com/ddljrgyvx/image/upload/v1757150291/mail_iwp6no.svg" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
         <h1 style="color: #007bff; text-align: center; margin-bottom: 20px;">Welcome to Synergy Sphere!</h1>
         <p style="font-size: 14px; margin-bottom: 20px;">Dear User,</p>
         <p style="font-size: 14px; margin-bottom: 20px;">Thank you for choosing Synergy Sphere to manage your tasks. We're excited to have you on board and look forward to helping you be more productive.</p>
@@ -126,11 +126,12 @@ export const generateOTP = async (req, res) => {
     const { name } = req.query;
     const { reason } = req.query;
     const verifyOtp = {
+        from: process.env.EMAIL,
         to: email,
         subject: 'Account Verification OTP',
         html: `
         <div style="font-family: Poppins, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+    <img src="https://res.cloudinary.com/ddljrgyvx/image/upload/v1757150291/mail_iwp6no.svg" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
     <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Verify Your Synergy Sphere Account</h1>
     <div style="background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0,0,0,0.05);">
         <div style="background-color: #854CE6; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 0;">
@@ -152,11 +153,12 @@ export const generateOTP = async (req, res) => {
     };
 
     const resetPasswordOtp = {
+        from: process.env.EMAIL,
         to: email,
         subject: 'Synergy Sphere Reset Password Verification',
         html: `
             <div style="font-family: Poppins, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDHQMmI5x5qWbOrEuJuFWkSIBQoT_fFyoKOKYqOSoIvQ&s" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+                <img src="https://res.cloudinary.com/ddljrgyvx/image/upload/v1757150291/mail_iwp6no.svg" alt="Synergy Sphere Logo" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
                 <h1 style="font-size: 22px; font-weight: 500; color: #854CE6; text-align: center; margin-bottom: 30px;">Reset Your Synergy Sphere Account Password</h1>
                 <div style="background-color: #FFF; border: 1px solid #e5e5e5; border-radius: 5px; box-shadow: 0px 3px 6px rgba(0,0,0,0.05);">
                     <div style="background-color: #854CE6; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 0;">

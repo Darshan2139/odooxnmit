@@ -5,25 +5,25 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 const Container = styled.div`
 width: 90%;
 max-width: 1320px;
-  height: 60px;
-  margin: 12px 14px;
+  height: 48px;
+  margin: 8px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
-    padding: 0px 20px !important;
+    padding: 0px 16px !important;
   }
 `;
 const Logo = styled.h1`
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   color: ${({ theme }) => theme.primary};
 `;
 
 const Menu = styled.ul`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   list-style: none;
   @media (max-width: 768px) {
     display: none;

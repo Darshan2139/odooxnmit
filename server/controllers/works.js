@@ -122,8 +122,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD
   },
-  port: 465,
-  host: 'smtp.gmail.com'
+  port: process.env.MAIL_PORT || 587,
+  host: process.env.MAIL_HOST || 'smtp.gmail.com'
 });
 
 export const inviteProjectMember = async (req, res, next) => {
